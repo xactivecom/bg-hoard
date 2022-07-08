@@ -1,0 +1,54 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/store/ui-shared/src",
+  "prefix": "bg-hoard",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/store/ui-shared"],
+      "options": {
+        "jestConfig": "libs/store/ui-shared/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/store/ui-shared/**/*.ts",
+          "libs/store/ui-shared/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/store/ui-shared/.storybook",
+        "browserTarget": "store-ui-shared:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputDir": "dist/storybook/store-ui-shared",
+        "configDir": "libs/store/ui-shared/.storybook",
+        "browserTarget": "store-ui-shared:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
